@@ -120,7 +120,7 @@ const HomeScreen = () => {
             </View>
             <View
                 style={styles.listContainer}>
-                <Text style={styles.listTitle}>Your todos</Text>
+                <Text style={[styles.listTitle, { fontSize: 20 }]}>Your Todo List</Text>
                 {isLoading ? <ActivityIndicator /> : (
 
                     <FlatList
@@ -195,6 +195,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1
     },
     listTitle: {
+        color: 'black',
         fontSize: 18,
         fontWeight: "bold",
         marginBottom: 20
