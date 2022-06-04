@@ -1,21 +1,37 @@
 import { View, StyleSheet, Pressable, Text, TextInput, ImageBackground, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { GoogleSignin, statusCodes, GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import { signIn } from '../services/user.services';
+
+
 
 const SigninScreen = ({ navigation }) => {
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("saman@yopmail.com");
+    const [password, setPassword] = useState("12345678");
 
-
-    const login = () => {
+    //method related to sign in
+    const login = async () => {
+        const payload = {
+            email: username,
+            password
+        }
 
         if (username != "" && password != "") {
+            try {
+                const res = await signIn(payload)
+                if (res.ok) {
+                    navigation.replace('home')
+                } else {
+                    Alert.alert("Oops! error occured!")
+                }
+            } catch (err) {
+                Alert.alert("Oops! error occured!")
+            }
             navigation.navigate("home")
         } else {
             Alert.alert("All the fields are required!")
         }
-
     }
 
     useEffect(() => {
@@ -62,7 +78,7 @@ const SigninScreen = ({ navigation }) => {
                     <TextInput style={styles.input} placeholder="username" onChangeText={(e) => { setUsername(e) }}></TextInput>
                 </View>
                 <View>
-                    <TextInput secureTextEntry={true} f style={styles.input} placeholder="password" onChangeText={(e) => { setPassword(e) }}></TextInput>
+                    <TextInput secureTextEntry={true} style={styles.input} placeholder="password" onChangeText={(e) => { setPassword(e) }}></TextInput>
                 </View>
             </View>
             <Pressable onPress={() => { login() }} style={styles.signinbtn}>

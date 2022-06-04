@@ -23,7 +23,7 @@ export const getAllTodos = async () => {
             return { ok: false }
         }
     } catch (err) {
-        console.log("err>>", err)
+        console.log("err while getting data>>", err)
         return { ok: false }
     }
 }
