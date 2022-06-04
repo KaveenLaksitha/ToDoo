@@ -1,11 +1,61 @@
-import axios from 'axios'
+import API from "./API";
 
-var config = {
-    method: 'post',
-    url: 'https://api-nodejs-todolist.herokuapp.com/task',
-    headers: {
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGRjY2JlYzZiNTVkYTAwMTc1OTcyMmMiLCJpYXQiOjE1NzQ3NTE2ODh9.GPbsl9FLX4VrsGVErodiXypjuz1us4tfD0jwg2_UrzY',
-        'Content-Type': 'application/json'
-    },
-    data: data
-};
+export const addToDo = async (payload) => {
+    try {
+        const res = await API.post("/task", payload)
+        if (res.status === 201) {
+            return { ok: true }
+        } else {
+            return { ok: false }
+        }
+    } catch (err) {
+        console.log("err>>", err)
+        return { ok: false }
+    }
+}
+
+export const getAllTodos = async () => {
+    try {
+        const res = await API.get("/task")
+        if (res.status === 200) {
+            return { ok: true, data: res?.data?.data }
+        } else {
+            return { ok: false }
+        }
+    } catch (err) {
+        console.log("err>>", err)
+        return { ok: false }
+    }
+}
+
+export const updateSingleToDo = async (id, payload) => {
+    try {
+        const res = await API.put(`/task/${id}`, payload)
+        if (res.status === 200) {
+            return { ok: true, data: res?.data?.data }
+        } else {
+            console.log(res)
+            return { ok: false }
+        }
+    } catch (err) {
+        console.log("err>>", err)
+        return { ok: false }
+    }
+}
+
+export const deleteSingleToDo = async (id) => {
+    try {
+        const res = await API.delete(`/task/${id}`)
+        console.log("res>>>", res.data, res.status)
+        if (res.status === 200) {
+            return { ok: true, data: res?.data?.data }
+        } else {
+            console.log(res)
+            return { ok: false }
+        }
+    } catch (err) {
+        console.log("err>>", err)
+        return { ok: false }
+    }
+}
+

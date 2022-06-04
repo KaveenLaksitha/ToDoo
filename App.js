@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //importing screens
 import SplashScreen from './src/screens/SplashScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import SigninScreen from './src/screens/SigninScreen'
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,12 @@ export default function App() {
   return (
     <NavigationContainer theme={defaultTheme}>
       <Stack.Navigator initialRouteName="splashScreen" >
+        <Stack.Screen
+          name="signin"
+          component={SigninScreen}
+          options={{ title: 'Signin' }}
+        />
+
         <Stack.Screen
           name="home"
           component={HomeScreen}
