@@ -13,13 +13,22 @@ import { addToDo, updateSingleToDo } from '../../services/todo.service';
 
 const AddToDo = (props) => {
 
-    const inputRef = React.useRef(null);
+    let inputRef = React.useRef(null);
 
     const [modalVisible, setModalVisible] = useState(props.visible);
     const [isUpdate, setIsUpdate] = useState(props.data.isUpdate)
 
     const [description, setDescription] = useState('')
     const [status, setStatus] = useState({ todo: true, completed: false });
+
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            inputRef.current?.blur();
+            inputRef.current?.focus();
+        }, 100);
+        return () => clearTimeout(timeout);
+    }, []);
 
     //to close the modal
     const closeModal = (bool) => {
@@ -108,8 +117,7 @@ const AddToDo = (props) => {
                             <View style={styles.inputField}>
                                 <TextInput
                                     ref={inputRef}
-                                    placeholder=""
-                                    placeholderTextColor="#808080"
+                                    autoFocus={false}
                                     style={styles.input}
                                     onChangeText={e => {
                                         setDescription(e);
