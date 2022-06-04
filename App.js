@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SplashScreen from './src/screens/SplashScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import SigninScreen from './src/screens/SigninScreen'
+import SignupScreen from './src/screens/SignupScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,12 @@ export default function App() {
           name="home"
           component={HomeScreen}
           options={{ title: 'Home' }}
+        />
+
+        <Stack.Screen
+          name="signup"
+          component={SignupScreen}
+          options={{ title: 'Signup' }}
         />
 
         <Stack.Screen name="splashScreen" component={SplashScreen}
