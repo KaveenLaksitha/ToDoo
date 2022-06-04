@@ -1,8 +1,22 @@
-import { View, StyleSheet, Pressable, Text } from 'react-native'
-import React, { useEffect } from 'react'
+import { View, StyleSheet, Pressable, Text, TextInput, ImageBackground, Alert } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { GoogleSignin, statusCodes, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 
 const SigninScreen = ({ navigation }) => {
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+
+    const login = () => {
+
+        if (username != "" && password != "") {
+            navigation.navigate("home")
+        } else {
+            Alert.alert("All the fields are required!")
+        }
+
+    }
 
     useEffect(() => {
         GoogleSignin.configure({
@@ -11,11 +25,10 @@ const SigninScreen = ({ navigation }) => {
         });
     }, []);
 
-    signIn = async () => {
+    signInWithGoogle = async () => {
         try {
             await GoogleSignin.hasPlayServices();
             const userInfo = await GoogleSignin.signIn();
-            console.log("data>>>", userInfo)
         } catch (error) {
             console.log(error)
             if (error.code === statusCodes.SIGN_IN_CANCELLED) {
@@ -38,16 +51,39 @@ const SigninScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.header}>Welcome to ToDoo</Text>
-            <GoogleSigninButton
-                onPress={() => { signIn() }}
+            <View style={styles.formContainer}>
+                <ImageBackground
+                    style={styles.image}
+                    source={{
+                        uri: 'https://i.ibb.co/jRhgq3W/undraw-Shared-goals-re-jvqd.png'
+                    }}
+                />
+                <View>
+                    <TextInput style={styles.input} placeholder="username" onChangeText={(e) => { setUsername(e) }}></TextInput>
+                </View>
+                <View>
+                    <TextInput secureTextEntry={true} f style={styles.input} placeholder="password" onChangeText={(e) => { setPassword(e) }}></TextInput>
+                </View>
+            </View>
+            <Pressable onPress={() => { login() }} style={styles.signinbtn}>
+                <Text style={styles.text}>Signin</Text>
+            </Pressable>
+
+            {/* <GoogleSigninButton
+                onPress={() => { signInWithGoogle() }}
                 style={{ width: 192, height: 48 }}
                 size={GoogleSigninButton.Size.Wide}
                 color={GoogleSigninButton.Color.Dark}
-            // style={styles.signinbtn}
-            />
-            <Pressable onPress={() => { navigation.replace('home') }} style={styles.signinbtn}>
-                <Text style={styles.text}>home</Text>
-            </Pressable>
+            /> */}
+
+            <View style={styles.textGroup}>
+                <Text style={styles.textSignup}>Don't have a account? </Text>
+                <Pressable onPress={() => { navigation.replace('signup') }}>
+                    <Text style={{ color: "blue" }}>
+                        Signup
+                    </Text>
+                </Pressable>
+            </View>
         </View>
     )
 }
@@ -56,7 +92,7 @@ const SigninScreen = ({ navigation }) => {
 //styles
 const styles = StyleSheet.create({
     container: {
-        flex: 0.5,
+        flex: 1,
         alignItems: "center",
         justifyContent: "center"
     },
@@ -66,8 +102,33 @@ const styles = StyleSheet.create({
         fontSize: 36,
         color: 'black'
     },
+    image: {
+        // marginTop: 50,
+        resizeMode: 'cover',
+        height: 250,
+        width: 250,
+    },
+    formContainer: {
+        marginTop: 15,
+        width: '100%',
+        alignItems: 'center'
+    },
+    input: {
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: "black",
+        width: 350,
+        padding: 10,
+        color: 'black',
+        fontSize: 16,
+        marginBottom: 20
+    },
     signinbtn: {
-        backgroundColor: 'red',
+        backgroundColor: "#52007a",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 15,
+        width: "85%",
         padding: 10
     },
     text: {
@@ -75,6 +136,15 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontSize: 18,
         color: 'white'
+    },
+    textSignup: {
+        color: "black",
+        alignItems: 'center'
+    },
+    textGroup: {
+        marginTop: 15,
+        flexDirection: 'row',
+        alignItems: 'center'
     }
 })
 
