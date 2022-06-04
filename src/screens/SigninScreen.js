@@ -75,10 +75,10 @@ const SigninScreen = ({ navigation }) => {
                     }}
                 />
                 <View>
-                    <TextInput style={styles.input} placeholder="username" onChangeText={(e) => { setUsername(e) }}></TextInput>
+                    <TextInput style={styles.input} placeholder="email" placeholderTextColor="grey" onChangeText={(e) => { setUsername(e) }}></TextInput>
                 </View>
                 <View>
-                    <TextInput secureTextEntry={true} style={styles.input} placeholder="password" onChangeText={(e) => { setPassword(e) }}></TextInput>
+                    <TextInput secureTextEntry={true} style={styles.input} placeholder="password" placeholderTextColor="grey" onChangeText={(e) => { setPassword(e) }}></TextInput>
                 </View>
             </View>
             <Pressable onPress={() => { login() }} style={styles.signinbtn}>

@@ -55,11 +55,11 @@ const SignupScreen = ({ navigation }) => {
             </View>
             <View style={{ marginTop: 10 }}>
                 <Text style={styles.text}>Password :</Text>
-                <TextInput style={styles.input} placeholder="" onChangeText={(e) => { setPassword(e) }}></TextInput>
+                <TextInput style={styles.input} secureTextEntry={true} placeholder="" onChangeText={(e) => { setPassword(e) }}></TextInput>
             </View>
             <View style={{ marginTop: 10 }}>
                 <Text style={styles.text}>Re enter the Password :</Text>
-                <TextInput style={styles.input} placeholder="" onChangeText={(e) => { setRepassword(e) }}></TextInput>
+                <TextInput style={styles.input} secureTextEntry={true} placeholder="" onChangeText={(e) => { setRepassword(e) }}></TextInput>
             </View>
             <Pressable onPress={() => { signupFunc() }} style={styles.btnSubmit}>
                 <Text style={[styles.text, { color: "white" }]}>Signup</Text>
@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'black',
-        fontSize: 18
+        fontSize: 18,
+        marginBottom: 5
     },
     btnSubmit: {
         marginTop: 30,
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 15,
-        width: "100%",
+        width: "95%",
         padding: 10
 
     },
