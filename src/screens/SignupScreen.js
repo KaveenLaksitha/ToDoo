@@ -42,26 +42,26 @@ const SignupScreen = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <View style={{ marginTop: 10 }}>
                 <Text style={styles.text}>Name :</Text>
-                <TextInput style={styles.input} placeholder="" onChangeText={(e) => { setName(e) }}></TextInput>
+                <TextInput testID='name' style={styles.input} placeholder="" onChangeText={(e) => { setName(e) }}></TextInput>
             </View>
 
             <View style={{ marginTop: 10 }}>
                 <Text style={styles.text}>Email :</Text>
-                <TextInput style={styles.input} placeholder="" onChangeText={(e) => { setEmail(e) }}></TextInput>
+                <TextInput testID='email' style={styles.input} placeholder="" onChangeText={(e) => { setEmail(e) }}></TextInput>
             </View>
             <View style={{ marginTop: 10 }}>
                 <Text style={styles.text}>Age : </Text>
-                <TextInput style={styles.input} placeholder="" keyboardType="numeric" onChangeText={(e) => { setAge(e) }}></TextInput>
+                <TextInput testID='age' style={styles.input} placeholder="" keyboardType="numeric" onChangeText={(e) => { setAge(e) }}></TextInput>
             </View>
             <View style={{ marginTop: 10 }}>
                 <Text style={styles.text}>Password :</Text>
-                <TextInput style={styles.input} secureTextEntry={true} placeholder="" onChangeText={(e) => { setPassword(e) }}></TextInput>
+                <TextInput testID='password' style={styles.input} secureTextEntry={true} placeholder="" onChangeText={(e) => { setPassword(e) }}></TextInput>
             </View>
             <View style={{ marginTop: 10 }}>
                 <Text style={styles.text}>Re enter the Password :</Text>
-                <TextInput style={styles.input} secureTextEntry={true} placeholder="" onChangeText={(e) => { setRepassword(e) }}></TextInput>
+                <TextInput testID='re-password' style={styles.input} secureTextEntry={true} placeholder="" onChangeText={(e) => { setRepassword(e) }}></TextInput>
             </View>
-            <Pressable onPress={() => { signupFunc() }} style={styles.btnSubmit}>
+            <Pressable testID='signupButton' onPress={() => { signupFunc() }} style={styles.btnSubmit}>
                 <Text style={[styles.text, { color: "white" }]}>Signup</Text>
             </Pressable>
         </SafeAreaView>

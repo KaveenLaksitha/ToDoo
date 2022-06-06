@@ -44,19 +44,6 @@ describe('Signin Screen', () => {
 
     });
 
-    // it('should go to home screen on login button press', () => {
-    //     const navigation = { navigate: () => { } }
-    //     spyOn(navigation, 'navigate')
-
-    //     const page = render(<SigninScreen navigation={navigation} />)
-
-    //     const loginBtn = page.getByTestId('loginButton')
-
-    //     fireEvent.press(loginBtn)
-
-    //     expect(navigation.navigate).toHaveBeenCalledWith('home');
-    // })
-
     test('renders sign in page correctly ', () => {
         const tree = renderer.create(<SigninScreen />).toJSON()
         expect(tree).toMatchSnapshot()
