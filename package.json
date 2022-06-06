@@ -25,13 +25,27 @@
     "@babel/core": "^7.18.2",
     "@babel/runtime": "^7.18.3",
     "@react-native-community/eslint-config": "^3.0.2",
-    "babel-jest": "^28.1.0",
+    "@testing-library/react-native": "^9.1.0",
+    "babel-jest": "~27.5.1",
     "eslint": "^8.16.0",
-    "jest": "^28.1.0",
+    "jest": "~27.5.1",
     "metro-react-native-babel-preset": "^0.71.0",
     "react-test-renderer": "17.0.2"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "verbose": true,
+    "setupFiles": [
+      "./jestSetupFile.js"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?@?react-native|@react-native-community|@react-navigation)"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }

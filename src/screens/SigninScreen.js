@@ -41,7 +41,7 @@ const SigninScreen = ({ navigation }) => {
         });
     }, []);
 
-    signInWithGoogle = async () => {
+    const signInWithGoogle = async () => {
         try {
             await GoogleSignin.hasPlayServices();
             const userInfo = await GoogleSignin.signIn();
@@ -69,19 +69,20 @@ const SigninScreen = ({ navigation }) => {
             <Text style={styles.header}>Welcome to ToDoo</Text>
             <View style={styles.formContainer}>
                 <ImageBackground
+                    testID='image'
                     style={styles.image}
                     source={{
                         uri: 'https://i.ibb.co/jRhgq3W/undraw-Shared-goals-re-jvqd.png'
                     }}
                 />
                 <View>
-                    <TextInput style={styles.input} placeholder="email" placeholderTextColor="grey" onChangeText={(e) => { setUsername(e) }}></TextInput>
+                    <TextInput testID='textInput-email' style={styles.input} placeholder="email" placeholderTextColor="grey" onChangeText={(e) => { setUsername(e) }}></TextInput>
                 </View>
                 <View>
-                    <TextInput secureTextEntry={true} style={styles.input} placeholder="password" placeholderTextColor="grey" onChangeText={(e) => { setPassword(e) }}></TextInput>
+                    <TextInput testID='textInput-password' secureTextEntry={true} style={styles.input} placeholder="password" placeholderTextColor="grey" onChangeText={(e) => { setPassword(e) }}></TextInput>
                 </View>
             </View>
-            <Pressable onPress={() => { login() }} style={styles.signinbtn}>
+            <Pressable onPress={() => { login() }} style={styles.signinbtn} testID="loginButton">
                 <Text style={styles.text}>Signin</Text>
             </Pressable>
 
